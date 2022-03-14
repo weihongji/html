@@ -4,15 +4,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Page Layout (Sticky)</title>
+	<title>Page Layout</title>
 	<style>
 		body {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			margin: 0;
-			padding: 0;
-			border: 0;
+			margin:0;
+			padding:0;
+			border:0;
 			height: 100vh;
 		}
 
@@ -24,16 +24,16 @@
 			margin: 1px;
 			border: 2px solid rgb(96, 139, 168);
 			border-radius: 5px;
-			background-color: #DFE8EE;
+			background-color: rgba(96, 139, 168, .2);
 		}
 	</style>
 </head>
 <body>
 <div>
-	<div class="box" style="height: 60px; position: sticky; top:0;">header</div>
-	<div class="box" style="height: 600px">content</div>
+	<div class="box" style="height: 60px">header</div>
+	<div class="box" style="height: 2000px">content</div>
 </div>
-<div style="position: sticky; bottom:0;">
+<div>
 	<div class="box" style="height: 60px">footer</div>
 </div>
 </body>
