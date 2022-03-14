@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Page Layout (Sticky)</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			margin: 0px;
+			padding: 0px;
+			border: 0px;
+			height: 100vh;
+		}
+
+		body > div {
+			border: 1px dashed;
+		}
+
+		.box {
+			margin: 1px;
+			border: 2px solid rgb(96, 139, 168);
+			border-radius: 5px;
+			background-color: #DFE8EE;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<div class="box" style="height: 60px; position: sticky; top: 0px;">header</div>
+	<div class="box" style="height: 900px">content</div>
+</div>
+<div style="position: sticky; bottom: 0px;">
+	<div class="box" style="height: 60px">footer</div>
+</div>
+</body>
+</html>

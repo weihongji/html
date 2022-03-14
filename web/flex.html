@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Flex Display</title>
+	<style>
+		a:visited {
+			color: blue;
+		}
+
+		.box {
+			margin: 20px 0px;
+			padding: 3px;
+			display: flex;
+			border: 1px dashed;
+		}
+
+		.box > div {
+			margin: 1px;
+			border: 2px solid rgb(96, 139, 168);
+			border-radius: 5px;
+			background-color: rgba(96, 139, 168, .2);
+		}
+
+		div.label {
+			margin-bottom: -10px;
+		}
+
+		.highlight {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<a target="_blank"
+	   href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Basic
+		concepts of flexbox</a>
+</div>
+<div class="box">
+	<div>Item One</div>
+	<div>Item Two</div>
+	<div>Item Three
+		<br>has
+		<br>extra
+		<br>text
+	</div>
+</div>
+<div class="label">
+	align-items: <span class="highlight">flex-start</span>. Avaliable values: stretch (default), flex-start, flex-end,
+	center.
+</div>
+<div class="box" style="align-items: flex-start;">
+	<div>Item One</div>
+	<div>Item Two</div>
+	<div>Item Three
+		<br>has
+		<br>extra
+		<br>text
+	</div>
+</div>
+<div class="label">
+	justify-content: <span class="highlight">center</span>. Avaliable values: flex-start (start), flex-end, center,
+	space-around, space-between, space-evenly.
+</div>
+<div class="box" style="justify-content: center;">
+	<div>Item One</div>
+	<div>Item Two</div>
+	<div>Item Three</div>
+</div>
+<div class="label">
+	flex-direction: <span class="highlight">column</span>
+</div>
+<div class="box" style="height: 200px; flex-direction: column;">
+	<div>Item One</div>
+	<div>Item Two</div>
+	<div>Item Three
+		<br>has
+		<br>extra
+		<br>text
+	</div>
+</div>
+</body>
+</html>
