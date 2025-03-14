@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap-icons.css">
+	<title>Multi-Select List</title>
+</head>
+
+<body>
+<div class="container">
+	<h1>A demo of using jQuery multiselect.js</h1>
+	<div class="row">
+		<div class="col-sm-5">
+			<select name="from" id="lstview" class="form-control" size="13" multiple="multiple">
+				<option value="HTML">HTML</option>
+				<option value="2">CSS</option>
+				<option value="CSS">CSS3</option>
+				<option value="jQuery">jQuery</option>
+				<option value="JavaScript">JavaScript</option>
+				<option value="Bootstrap">Bootstrap</option>
+				<option value="MySQL">MySQL</option>
+				<option value="PHP">PHP</option>
+				<option value="JSP">JSP</option>
+				<option value="Rubi on Rails">Rubi on Rails</option>
+				<option value="SQL">SQL</option>
+				<option value="Java">Java</option>
+				<option value="Python">Python</option>
+			</select>
+		</div>
+
+		<div class="col-sm-2">
+			<button type="button" id="lstview_rightAll" class="mt-3 btn btn-block btn-secondary">
+				<i class="bi bi-chevron-double-right"></i>
+			</button>
+			<button type="button" id="lstview_rightSelected" class="mt-3 btn btn-block btn-outline-secondary">
+				<i class="bi bi-chevron-right"></i>
+			</button>
+			<button type="button" id="lstview_leftSelected" class="mt-3 btn btn-block btn-outline-secondary">
+				<i class="bi bi-chevron-left"></i>
+			</button>
+			<button type="button" id="lstview_leftAll" class="mt-3 btn btn-block btn-secondary">
+				<i class="bi bi-chevron-double-left"></i>
+			</button>
+		</div>
+
+		<div class="col-sm-5">
+			<select name="to" id="lstview_to" class="form-control" size="13" multiple="multiple"></select>
+		</div>
+	</div>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.bundle.js"></script>
+<script src="multiselect.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#lstview').multiselect();
+	});
+
+</script>
+</body>
+</html>
+
