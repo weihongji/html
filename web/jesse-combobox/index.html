@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap-icons.css">
+	<link rel="stylesheet" href="jesse-combobox.css">
+	<title>Jesse Combo Box</title>
+</head>
+<body>
+<div style="margin: 10px; padding: 10px; width: 600px; border: 0px solid #ccc; border-radius: 0.25rem">
+	<div id="tag1">
+		<div class="jesse-tags">
+			<button class="btn btn-sm btn-secondary jesse-tag-add">+</button>
+			<div class="jesse-tag-item d-none">
+				<span>xxx</span>
+				<button class="close">×</button>
+			</div>
+		</div>
+		<div class="jesse-dropdown">
+			<div class="jesse-dropdown-menu">
+				<div style="position: relative">
+					<input type="search" class="form-control" placeholder="Search ...">
+				</div>
+				<div class="dropdown-divider"></div>
+				<label><input type="checkbox" value="1">Aaron</label>
+				<label><input type="checkbox" value="2">Bill</label>
+				<label><input type="checkbox" value="3">Colin</label>
+				<label><input type="checkbox" value="4">Darren</label>
+				<label><input type="checkbox" value="5">Evan</label>
+				<label><input type="checkbox" value="6">Frank</label>
+				<label><input type="checkbox" value="7">Gary</label>
+				<label><input type="checkbox" value="8">Henry</label>
+				<label><input type="checkbox" value="9">Ivy</label>
+				<label><input type="checkbox" value="10">Jesse</label>
+				<label><input type="checkbox" value="11">Kevin</label>
+				<label><input type="checkbox" value="12">Lester</label>
+				<label><input type="checkbox" value="13">Morgan</label>
+				<label><input type="checkbox" value="14">Nova</label>
+				<label><input type="checkbox" value="15">Oliver</label>
+				<label><input type="checkbox" value="16">Paul</label>
+				<label><input type="checkbox" value="17">Queenie</label>
+				<label><input type="checkbox" value="18">Rocky</label>
+				<label><input type="checkbox" value="19">Shane</label>
+				<label><input type="checkbox" value="20">Tommy</label>
+				<label><input type="checkbox" value="21">Uber</label>
+				<label><input type="checkbox" value="22">Vick</label>
+				<label><input type="checkbox" value="23">Wade</label>
+				<label><input type="checkbox" value="24">Xfile</label>
+				<label><input type="checkbox" value="25">Yvonne</label>
+				<label><input type="checkbox" value="26">Zoey</label>
+			</div>
+		</div>
+	</div>
+	<div id="message" class="border border-primary" style="height: 200px; overflow-y: auto">A brown fox jumps over a lazy dog.</div>
+	<div id="tag2">
+		<div class="jesse-tags">
+			<button class="btn btn-sm btn-secondary jesse-tag-add">+</button>
+			<div class="jesse-tag-item d-none">
+				<span>xxx</span>
+				<button class="close">×</button>
+			</div>
+		</div>
+		<div class="jesse-dropdown">
+			<div class="jesse-dropdown-menu">
+				<div style="position: relative">
+					<input type="search" class="form-control" placeholder="Search ...">
+				</div>
+				<div class="dropdown-divider"></div>
+				<label><input type="checkbox" value="11">Hello</label>
+				<label><input type="checkbox" value="12">World</label>
+				<label><input type="checkbox" value="13">Cannot Reproduce</label>
+				<label><input type="checkbox" value="1">One</label>
+				<label><input type="checkbox" value="2">Two</label>
+				<label><input type="checkbox" value="3">Three</label>
+				<label><input type="checkbox" value="4">Four</label>
+				<label><input type="checkbox" value="5">Five</label>
+				<label><input type="checkbox" value="6">Six</label>
+				<label><input type="checkbox" value="7">Seven</label>
+				<label><input type="checkbox" value="8">Eight</label>
+				<label><input type="checkbox" value="9">Nine</label>
+				<label><input type="checkbox" value="10">Ten</label>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.bundle.js"></script>
+<script src="jesse-combobox.js"></script>
+<script>
+	let tag1, tag2;
+	$(function () {
+		tag1 = new JesseCombobox('tag1', "1,2", x => {$('#message').html(x + "<br/>" + $('#message').html())});
+		tag2 = new JesseCombobox('tag2');
+	})
+</script>
+</body>
+</html>

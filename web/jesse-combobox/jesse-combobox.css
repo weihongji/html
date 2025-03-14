@@ -1,0 +1,73 @@
+.jesse-tags {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 3px 5px;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: .3rem;
+}
+
+.jesse-tag-add {
+	width: 60px
+}
+
+.jesse-tag-item {
+	margin-left: 5px;
+	padding: 3px;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: .25rem;
+}
+
+.jesse-tag-item > span {
+	margin-right: 3px;
+	font-size: 0.875rem;
+	cursor: default
+}
+
+.jesse-tag-item .close {
+	line-height: 20px;
+}
+
+.jesse-dropdown {
+	position: relative;
+	display: none;
+}
+
+.jesse-dropdown-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	float: left;
+	min-width: 10rem;
+	margin: 0.125rem 0 0;
+	font-size: 1rem;
+	color: #212529;
+	text-align: left;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 0.25rem;
+}
+
+.jesse-dropdown-menu > label {
+	display: block;
+	margin: 0px;
+	padding: 5px 10px;
+	width: 100%;
+	clear: both;
+	font-weight: 400;
+	color: #212529;
+	text-align: inherit;
+	white-space: nowrap;
+	background-color: transparent;
+	border: 0;
+}
+
+.jesse-dropdown-menu > label > input {
+	margin-right: 10px;
+}
+
+.jesse-dropdown-menu > label:hover {
+	background-color: #e9ecef;
+}
