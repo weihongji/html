@@ -16,7 +16,7 @@
 			height: 100vh;
 		}
 
-		body > div {
+		body>div {
 			border: 1px dashed;
 		}
 
@@ -26,15 +26,36 @@
 			border-radius: 5px;
 			background-color: #DFE8EE;
 		}
+
+		.header {
+			position: sticky;
+			height: 60px;
+			top: 0;
+		}
+
+		.main {
+			height: 600px
+		}
+
+		.footer {
+			position: sticky;
+			bottom: 0;
+		}
+
+		.footer .box {
+			height: 60px;
+		}
 	</style>
 </head>
+
 <body>
-<div>
-	<div class="box" style="height: 60px; position: sticky; top:0;">header</div>
-	<div class="box" style="height: 600px">content</div>
-</div>
-<div style="position: sticky; bottom:0;">
-	<div class="box" style="height: 60px">footer</div>
-</div>
+	<div>
+		<div class="box header">header</div>
+		<div class="box main">content</div>
+	</div>
+	<div class="footer">
+		<div class="box">footer</div>
+	</div>
 </body>
+
 </html>

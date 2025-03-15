@@ -9,15 +9,14 @@
 		body {
 			display: flex;
 			flex-direction: column;
-			justify-content: space-between;
-			margin:0;
-			padding:0;
-			border:0;
+			margin: 0;
+			padding: 0;
+			border: 0;
 			height: 100vh;
 		}
 
-		body > div {
-			border: 1px dashed;
+		body>div {
+			flex-shrink: 0;
 		}
 
 		.box {
@@ -25,16 +24,41 @@
 			border: 2px solid rgb(96, 139, 168);
 			border-radius: 5px;
 			background-color: rgba(96, 139, 168, .2);
+			;
+		}
+
+		.header {
+			position: sticky;
+			height: 60px;
+			top: 0;
+		}
+
+		.main {
+			flex-grow: 1;
+			min-height: 600px;
+			padding: 0 5px 0 0
+		}
+
+		.edit {
+			width: 100%;
+			height: 100%;
+			white-space: nowrap;
+		}
+
+		.footer {
+			position: sticky;
+			bottom: 0;
+			height: 60px;
 		}
 	</style>
 </head>
+
 <body>
-<div>
-	<div class="box" style="height: 60px">header</div>
-	<div class="box" style="height: 600px">content</div>
-</div>
-<div>
-	<div class="box" style="height: 60px">footer</div>
-</div>
+	<div class="box header">header</div>
+	<div class="box main">
+		<textarea class="edit" placeholder="edit..."></textarea>
+	</div>
+	<div class="box footer">footer</div>
 </body>
+
 </html>
