@@ -24,7 +24,7 @@ class JesseCombobox {
 			return;
 		}
 		selectedIDs = (selectedIDs || '').replaceAll(' ', '');
-		box.append($('<input/>', {type:'hidden', id: box.data('name'), name: box.data('name'), value: selectedIDs}));
+		box.append($('<input/>', { type: 'hidden', id: box.data('name'), name: box.data('name'), value: selectedIDs }));
 
 		this.context = box;
 		this.tagPanel = $('.jesse-tags', this.context);
@@ -92,10 +92,36 @@ class JesseCombobox {
 			}
 		});
 
-		JesseCombobox.instances.push({[boxId]: this});
+		JesseCombobox.instances.push({ [boxId]: this });
 	}
 
 	showDropdown() {
+		let itemHeight = 34;
+		let dropdownHeigh = this.dropdownMenu.children().length * itemHeight - 14;
+		let tagTop = this.context.get(0).getBoundingClientRect().top;
+		let viewHeight = window.innerHeight;
+		let downSpace = viewHeight - tagTop - this.tagPanel.height(); // Space below the "+" button
+		let dropupTop = -(dropdownHeigh + this.tagPanel.height()) - 10;
+		if (dropdownHeigh > downSpace) { // The dropdown overflows current view
+			let handled = false;
+			if (tagTop > dropdownHeigh) { // Space above the "+" button is enough for the dropdown.
+				this.dropdownMenu.css('top', dropupTop);
+				handled = true;
+			}
+			else if (tagTop > downSpace) { // The "+" button is lower than middle.
+				if (tagTop > 400) { // Consider to drop up if space above the "+" button is more than 400px.
+					dropdownHeigh = tagTop - this.tagPanel.height();
+					dropupTop = -(dropdownHeigh + this.tagPanel.height()) - 10;
+					this.dropdownMenu.css('top', dropupTop);
+					this.dropdownMenu.css('max-height', dropdownHeigh);
+					handled = true;
+				}
+			}
+			if (!handled) { // Not handled
+				this.dropdownMenu.css('max-height', Math.max(downSpace - 20, 400)); // Overflow downward but no more than 400px.
+			}
+		}
+
 		this.searchBox.val('');
 		this.searchItem();
 		this.dropdownPanel.show();
