@@ -1,3 +1,9 @@
+/**
+ * Dropdown with checkboxes and search box
+ * @Source: https://github.com/weihongji/html/tree/master/web/jesse-combobox
+ * @Author: Jesse Wei
+ * @Contact: weihongji@qq.com
+ **/
 class JesseCombobox {
 	static instances = [];
 
@@ -17,22 +23,22 @@ class JesseCombobox {
 			console.error('HTML element with id "' + boxId + '" is not found.');
 			return;
 		}
-		this.context = box;
+		selectedIDs = (selectedIDs || '').replaceAll(' ', '');
+		box.append($('<input/>', {type:'hidden', id: box.data('name'), name: box.data('name'), value: selectedIDs}));
 
+		this.context = box;
 		this.tagPanel = $('.jesse-tags', this.context);
 		this.addTagButton = $('.jesse-tag-add', this.context);
 		this.dropdownPanel = $('.jesse-dropdown', this.context);
 		this.dropdownMenu = $('.jesse-dropdown-menu', this.context);
 		this.searchBox = $("input[type=search]", this.dropdownMenu);
 
+		this.hiddenField = $('#' + box.data('name'));
 		this.onchange = onchange;
 
 		// Load selected items
-		let arrID = (selectedIDs || '').replaceAll(' ', '').split(',');
+		let arrID = selectedIDs.length > 0 ? selectedIDs.split(',') : [];
 		for (let i = 0; i < arrID.length; i++) {
-			if (arrID[i] == '') {
-				continue;
-			}
 			let checkbox = $(':checkbox', this.dropdownMenu).filter('[value=' + arrID[i] + ']');
 			if (checkbox.length == 1) {
 				checkbox.prop("checked", true);
@@ -124,8 +130,10 @@ class JesseCombobox {
 			this.tagPanel.append(tag);
 		}
 
+		let values = this.getSelectedItems();
+		this.hiddenField.val(values)
 		if (typeof this.onchange == 'function') {
-			this.onchange(this.getSelectedItems());
+			this.onchange(values);
 		}
 	}
 
@@ -155,8 +163,10 @@ class JesseCombobox {
 			span.closest('.jesse-tag-item').remove();
 		}
 
+		let values = this.getSelectedItems();
+		this.hiddenField.val(values)
 		if (typeof this.onchange == 'function') {
-			this.onchange(this.getSelectedItems());
+			this.onchange(values);
 		}
 	}
 
