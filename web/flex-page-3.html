@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Page Layout</title>
+	<title>Page Layout (Top, Middle, Bottom)</title>
 	<style>
 		body {
 			display: flex;
@@ -15,36 +15,30 @@
 			height: 100vh;
 		}
 
-		body>div {
-			flex-shrink: 0;
-		}
-
 		.box {
 			margin: 1px;
 			border: 2px solid rgb(96, 139, 168);
 			border-radius: 5px;
 			background-color: rgba(96, 139, 168, .2);
-			;
 		}
 
 		.header {
+			flex-shrink: 0;
 			height: 60px;
-			top: 0;
 		}
 
-		.main {
+		.middle {
 			flex-grow: 1;
-			padding: 0 5px 0 0
+			overflow: auto;
 		}
 
-		.edit {
-			width: 100%;
-			height: 100%;
-			white-space: nowrap;
+		.content {
+			height: 600px;
+			border: 1px solid blue;
 		}
 
 		.footer {
-			bottom: 0;
+			flex-shrink: 0;
 			height: 60px;
 		}
 	</style>
@@ -52,8 +46,12 @@
 
 <body>
 	<div class="box header">header</div>
-	<div class="box main">
-		<textarea class="edit" placeholder="edit..."></textarea>
+	<div class="box middle">
+		<div class="content">content
+			<br />
+			<br />Height of content is 600px.
+			<br />Scrollbar will appear in the CONTENT area if window's height is less than 720px (header + content + footer).
+		</div>
 	</div>
 	<div class="box footer">footer</div>
 </body>
