@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Page Layout (Top, Left, Right, Bottom)</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			height: 100vh;
+		}
+
+		.box {
+			margin: 1px;
+			border: 2px solid rgb(96, 139, 168);
+			border-radius: 5px;
+			background-color: rgba(96, 139, 168, .2);
+		}
+
+		.header {
+			flex-shrink: 0;
+			height: 60px;
+		}
+
+		.middle {
+			flex-grow: 1;
+			display: flex;
+			overflow: auto;
+		}
+
+		.left {
+			flex-shrink: 0;
+			min-width: 200px;
+			overflow: auto;
+		}
+
+		.left>div {
+			margin: 0 5px;
+			padding: 5px;
+			height: 100px;
+			line-height: 100px;
+			border: 1px solid rgb(96, 139, 168);
+			border-radius: 0.25rem;
+		}
+
+		.right {
+			flex-grow: 1;
+			overflow: auto;
+		}
+
+		.content {
+			height: 600px;
+			border: 1px solid blue;
+		}
+
+		.footer {
+			flex-shrink: 0;
+			height: 60px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box header">header</div>
+	<div class="box middle">
+		<div class="box left">
+			<div>Item 1</div>
+			<div>Item 2</div>
+			<div>Item 3</div>
+			<div>Item 4</div>
+			<div>Height: 500px</div>
+		</div>
+		<div class="box right">
+			<div class="content">content
+				<br />
+				<br />Height of content is 600px.
+				<br />Scrollbar will appear in the CONTENT area if window's height is less than 720px (header + content + footer).
+			</div>
+		</div>
+	</div>
+	<div class="box footer">footer</div>
+</body>
+
+</html>
