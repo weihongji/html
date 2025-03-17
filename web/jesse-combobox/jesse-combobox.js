@@ -23,35 +23,20 @@ class JesseCombobox {
 			console.error('HTML element with id "' + boxId + '" is not found.');
 			return;
 		}
-		selectedIDs = (selectedIDs || '').replaceAll(' ', '');
-		box.append($('<input/>', { type: 'hidden', id: box.data('name'), name: box.data('name'), value: selectedIDs }));
 
 		this.context = box;
 		this.tagPanel = $('.jesse-tags', this.context);
 		this.addTagButton = $('.jesse-tag-add', this.context);
 		this.dropdownPanel = $('.jesse-dropdown', this.context);
 		this.dropdownMenu = $('.jesse-dropdown-menu', this.context);
+		this.dropdownItemIDs = $('.jesse-dropdown-menu :checkbox', this.context).toArray().map(x => x.value);
 		this.searchBox = $("input[type=search]", this.dropdownMenu);
 
+		box.append($('<input/>', { type: 'hidden', id: box.data('name'), name: box.data('name'), value: '' }));
 		this.hiddenField = $('#' + box.data('name'));
+
 		this.onchange = onchange;
-
-		// Load selected items
-		let arrID = selectedIDs.length > 0 ? selectedIDs.split(',') : [];
-		for (let i = 0; i < arrID.length; i++) {
-			let checkbox = $(':checkbox', this.dropdownMenu).filter('[value=' + arrID[i] + ']');
-			if (checkbox.length == 1) {
-				checkbox.prop("checked", true);
-
-				// Move forward on list
-				checkbox.closest('label').insertBefore($('.dropdown-divider', this.context));
-
-				// Add to tag panel
-				let tag = $('.jesse-tags>div', this.context).first().clone().removeClass('d-none');
-				tag.html(tag.html().replaceAll('xxx', checkbox.closest('label').text().trim()))
-				this.tagPanel.append(tag);
-			}
-		}
+		this.setSelectedItems(selectedIDs, true);
 
 		this.tagPanel.click(event => {
 			if ($(event.target).hasClass('close')) { // Close button is clicked
@@ -62,6 +47,9 @@ class JesseCombobox {
 		this.addTagButton.click(() => {
 			if (this.dropdownPanel.is(":hidden")) {
 				this.showDropdown();
+			}
+			else {
+				this.hideDropdown();
 			}
 		});
 
@@ -95,6 +83,39 @@ class JesseCombobox {
 		JesseCombobox.instances.push({ [boxId]: this });
 	}
 
+	setSelectedItems(selectedIDs, initial) {
+		selectedIDs = (selectedIDs || '').replaceAll(' ', '');
+		$('#hiddenField').val(selectedIDs);
+
+		// Reset dropdown list if this is not the first call.
+		if (!initial) {
+			// Sort list items. Don't remove then re-create from a copy because events will be removed as well.
+			for (let i = 0; i < this.dropdownItemIDs.length; i++) {
+				let item = $(':checkbox[value=' + this.dropdownItemIDs[i] + ']', this.dropdownMenu).prop('checked', false).parent();
+				this.dropdownMenu.append(item);
+			}
+
+			// Reset tag panel
+			$('.jesse-tag-item.d-none', this.tagPanel).nextAll().remove();
+		}
+
+		let arrID = selectedIDs.length > 0 ? selectedIDs.split(',') : [];
+		for (let i = 0; i < arrID.length; i++) {
+			let checkbox = $(':checkbox', this.dropdownMenu).filter('[value=' + arrID[i] + ']');
+			if (checkbox.length == 1) {
+				checkbox.prop("checked", true);
+
+				// Move forward on list
+				checkbox.closest('label').insertBefore($('.dropdown-divider', this.context));
+
+				// Add to tag panel
+				let tag = $('.jesse-tags>div', this.context).first().clone().removeClass('d-none');
+				tag.html(tag.html().replaceAll('xxx', checkbox.closest('label').text().trim()))
+				this.tagPanel.append(tag);
+			}
+		}
+	}
+
 	showDropdown() {
 		let itemHeight = 34;
 		let dropdownHeigh = this.dropdownMenu.children().length * itemHeight - 14;
@@ -118,7 +139,7 @@ class JesseCombobox {
 				}
 			}
 			if (!handled) { // Not handled
-				this.dropdownMenu.css('max-height', Math.max(downSpace - 20, 400)); // Overflow downward but no more than 400px.
+				this.dropdownMenu.css('max-height', Math.max(downSpace - 200, 400)); // Overflow downward but no more than 400px.
 			}
 		}
 

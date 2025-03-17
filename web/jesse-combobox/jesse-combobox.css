@@ -8,7 +8,7 @@
 }
 
 .jesse-tag-add {
-	width: 60px
+	min-width: 30px;
 }
 
 .jesse-tag-item {
@@ -21,7 +21,7 @@
 .jesse-tag-item > span {
 	margin-right: 3px;
 	font-size: 0.875rem;
-	cursor: default
+	cursor: default;
 }
 
 .jesse-tag-item .close {
