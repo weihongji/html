@@ -84,7 +84,10 @@ class JesseCombobox {
 	}
 
 	setSelectedItems(selectedIDs, initial) {
-		selectedIDs = (selectedIDs || '').replaceAll(' ', '');
+		if (typeof selectedIDs == 'object' && selectedIDs.constructor.name == 'Array') {
+			selectedIDs = selectedIDs.toLocaleString();
+		}
+		selectedIDs = (selectedIDs || '').replaceAll(/[ \[\]]/g, ''); // Remove spaces and array brackets []
 		$('#hiddenField').val(selectedIDs);
 
 		// Reset dropdown list if this is not the first call.
