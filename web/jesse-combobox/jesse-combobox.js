@@ -144,6 +144,8 @@ class JesseCombobox {
 			if (!handled) { // Not handled
 				this.dropdownMenu.css('max-height', Math.max(downSpace - 200, 400)); // Overflow downward but no more than 400px.
 			}
+		} else {
+			this.dropdownMenu.css('top', 'auto');
 		}
 
 		this.searchBox.val('');
