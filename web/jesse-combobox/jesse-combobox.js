@@ -88,7 +88,7 @@ class JesseCombobox {
 			selectedIDs = selectedIDs.toLocaleString();
 		}
 		selectedIDs = (selectedIDs || '').replaceAll(/[ \[\]]/g, ''); // Remove spaces and array brackets []
-		$('#hiddenField').val(selectedIDs);
+		this.hiddenField.val(selectedIDs);
 
 		// Reset dropdown list if this is not the first call.
 		if (!initial) {
