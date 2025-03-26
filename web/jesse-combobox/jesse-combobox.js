@@ -84,7 +84,7 @@ class JesseCombobox {
 	}
 
 	setSelectedItems(selectedIDs, initial) {
-		if (typeof selectedIDs == 'object' && selectedIDs.constructor.name == 'Array') {
+		if (selectedIDs && selectedIDs.constructor.name == 'Array') {
 			selectedIDs = selectedIDs.toLocaleString();
 		}
 		selectedIDs = (selectedIDs || '').replaceAll(/[ \[\]]/g, ''); // Remove spaces and array brackets []
