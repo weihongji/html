@@ -1,0 +1,90 @@
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drag & Drop</title>
+	<style>
+		.container {
+			display: flex;
+			flex-direction: column;
+			margin: 20px;
+			padding: 10px;
+			border: 2px solid #0000ff;
+		}
+
+		.card {
+			margin: 10px;
+			padding: 20px;
+			width: 200px;
+			border-radius: 5px;
+			background-color: #AFDA9F;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		.drag-over {
+			margin: 5px;
+			border: 5px blue solid;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div id="card1" class="card" draggable="true">One</div>
+		<div id="card2" class="card" draggable="true">Two</div>
+		<div id="card3" class="card" draggable="true">Three</div>
+		<div id="card4" class="card" draggable="true">Four</div>
+	</div>
+</body>
+<script src="../js/jquery.js"></script>
+<script>
+	let draggedElement = null;
+	
+	$(function () {
+		$('.card').on('dragstart', e => {
+			draggedElement = e.target;
+		});
+
+		$('.card').on('dragenter', e => {
+			if (e.target == draggedElement) {
+				return;
+			}
+			$(e.target).addClass('drag-over');
+		});
+
+		$('.card').on('dragleave', e => {
+			$(e.target).removeClass('drag-over');
+		});
+
+		$('.card').on('dragend', e => {
+			$('.card').removeClass('drag-over');
+		});
+
+		$('.container').on('dragover', e => {
+			let event = e.originalEvent;
+			event.preventDefault();
+			event.dataTransfer.dropEffect = 'move';
+			
+		});
+
+		$('.container').on('drop', e => {
+			let targetElement = $('.card.drag-over').get(0);
+			if (targetElement != null && draggedElement != null) {
+				let srcTop = draggedElement.offsetTop;
+				let targetTop = targetElement.offsetTop;
+				if (srcTop < targetTop) { // Move downward
+					$(targetElement).after($(draggedElement));
+				}
+				else if (srcTop > targetTop) { // Move upward
+					$(targetElement).before($(draggedElement));
+				}
+			}
+		})
+	})
+</script>
+
+</html>
